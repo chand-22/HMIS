@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css2?family=Product+Sans:wght@400;700&display=swap');
+
+/* Main Consultations Section */
+.consultations-content {
+  font-family: 'Product Sans', sans-serif;
+  padding: 30px;
+  background-color: white;
+  width: 100%;
+  max-width: 800px; /* Ensure uniformity */
+  margin: auto;
+  min-height: 100vh;
+}
+
+/* Header */
+.consultations-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #ddd;
+}
+
+.consultations-header h2 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1c2b3a;
+}
+
+/* Consultations List */
+.consultations-list {
+  margin-top: 20px;
+}
+
+/* Consultation Card (Slab Style) */
+.consultation-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1c2b3a;
+  color: white;
+  padding: 15px 20px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  font-size: 18px;
+  gap: 10px;
+}
+
+.consultation-card span {
+  flex: 1;
+  text-align: center;
+  font-weight: 400;
+}
+
+.consult-date {
+  text-align: left;
+  font-weight: 700;
+}
+
+.consult-details {
+  text-align: right;
+  color: #64b6ac;
+  cursor: pointer;
+}
+
+.consult-details:hover {
+  text-decoration: underline;
+}
+
+/* Action Buttons */
+.cancel-btn, .reschedule-btn {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s ease;
+}
+
+.cancel-btn {
+  background-color: #d9534f;
+  color: white;
+}
+
+.cancel-btn:hover {
+  background-color: #c9302c;
+}
+
+.reschedule-btn {
+  background-color: #396d68;
+  color: white;
+}
+
+.reschedule-btn:hover {
+  background-color: #396d68;
+}
+
+/* No Data Message */
+.no-data {
+  font-size: 18px;
+  font-weight: 600;
+  color: #888;
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Modal Content */
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content h3 {
+  font-size: 22px;
+  color: #1c2b3a;
+  margin-bottom: 10px;
+}
+
+.modal-content p {
+  font-size: 16px;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+/* Modal Buttons */
+.modal-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cancel-modal-btn, .confirm-modal-btn {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s ease;
+}
+
+.cancel-modal-btn {
+  background-color: #d9534f;
+  color: white;
+}
+
+.cancel-modal-btn:hover {
+  background-color: #c9302c;
+}
+
+.confirm-modal-btn {
+  background-color: #396d68;
+  color: white;
+}
+
+.confirm-modal-btn:hover {
+  background-color: #5bc0de;
+}

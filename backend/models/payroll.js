@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 const PayrollSchema = new Schema({
-  employee_id: { type: Schema.Types.ObjectId, ref: 'Employee' },
+  employee_id: { type: Number, ref: 'Employee' },
   basic_salary: Number,
   payment_proof: String,
   allowance: Number,

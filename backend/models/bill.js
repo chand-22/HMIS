@@ -8,12 +8,13 @@ const BillItemSchema = new Schema({
   },
   consult_id: { type: Schema.Types.ObjectId, ref: 'Consultation' },
   report_id: { type: Schema.Types.ObjectId, ref: 'Report' },
-  prescription_id: { type: Schema.Types.ObjectId, ref: 'Prescription' },
+  prescription_id: { type: Number, ref: 'Prescription' },
   room_id: { type: Schema.Types.ObjectId, ref: 'Room' },
   item_description: String,
   item_amount: Number,
   quantity: Number
 });
+
 
 const PaymentSchema = new Schema({
     amount: Number,
@@ -23,19 +24,20 @@ const PaymentSchema = new Schema({
     transaction_id: String,
     status: { type: String, enum: ["success", "failed"] },
     payment_method: { type: String, enum: ["cash", "card", "bank_transfer", "insurance"] }
-  });
+});
   
-  const BillSchema = new Schema({
-    patient_id: { type: Schema.Types.ObjectId, ref: 'Patient' },
+const BillSchema = new Schema({
+    patient_id: { type: Number, ref: 'Patient' },
     generation_date: Date,
     total_amount: Number,
-    payment_status: { 
-      type: String, 
-      enum: ["paid", "pending", "partially_paid"] 
+    remaining_amount: Number,
+    payment_status: {
+      type: String,
+      enum: ["paid", "pending", "partially_paid"]
     },
     items: [BillItemSchema], // Embedded array
     payments: [PaymentSchema] // Embedded array
-  }, { timestamps: true });
-  
-  const Bill = mongoose.model('Bill', BillSchema);
-  export default Bill;
+}, { timestamps: true });
+
+const Bill = mongoose.model('Bill', BillSchema);
+export default Bill;

@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const PatientRecords = () => {
   const [allPatients, setAllPatients] = useState([]);
   const [filteredPatients, setFilteredPatients] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const navigate = useNavigate();
   
   // Dummy function to fetch patients from backend
   // TODO: Replace with actual API call to backend service
@@ -49,12 +51,9 @@ const PatientRecords = () => {
     setFilteredPatients(filtered);
   };
   
-  // Dummy function to view patient details
-  // TODO: Implement actual navigation or modal to display patient details
+  // Updated function to view patient consultations
   const viewPatientDetails = (patientId) => {
-    console.log(`View details for patient ${patientId}`);
-    // TODO: Navigate to patient details page or open modal
-    // Example: history.push(`/patients/${patientId}`);
+    navigate(`/nurse/patient-records/${patientId}/consultations`);
   };
 
   useEffect(() => {

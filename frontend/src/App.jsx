@@ -8,6 +8,13 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Home from "./pages/Home";
 import Unauthorized from "./pages/Unauthorized";
+import FeaturesPage from './pages/FeaturesPage';
+import CommunityPage from './pages/CommunityPage';
+import TrendsPage from './pages/TrendsPage';
+import AboutPage from './pages/AboutPage';
+import TermsPage from './pages/terms';
+import PrivacyPolicyPage from './pages/privacy';
+import './App.css';
 
 // Common Pages
 import Profile from "./pages/common/Profile";
@@ -26,6 +33,12 @@ import PreviousConsultations from "./pages/patient/PreviousConsultations";
 import BookConsultation from "./pages/patient/BookConsultation";
 import BookedConsultation from "./pages/patient/BookedConsultation";
 import RescheduleConsultation from "./pages/patient/RescheduleConsultation";
+import ConsultationDetails from "./pages/patient/ConsultationDetails";
+import ConsultationReports from "./pages/patient/ConsultationReports";
+import ConsultationPrescriptions from "./pages/patient/ConsultationPrescryptions";
+import ConsultationDiagnosis from "./pages/patient/ConsultationDiagnosis";
+import ConsultantBills from "./pages/patient/ConsultantBills";
+import Support from "./pages/patient/Support";
 
 import Consultations from "./pages/patient/Consultations";
 import DailyProgress from "./pages/patient/DailyProgress";
@@ -33,10 +46,19 @@ import DailyProgress from "./pages/patient/DailyProgress";
 // Medical Staff Pages
 import DoctorDashboard from "./pages/doctor/DoctorDashboard";
 import Appointments from "./pages/doctor/Appointments";
-import PatientConsulatation from "./pages/doctor/PatientConsultation"
+import DoctorAddAppointment from "./pages/doctor/DoctorAddAppointment";
+// import PatientConsulatation from "./pages/doctor/PatientConsultation"
+import DocPatientConsultations from "./pages/doctor/DocPatientConsultations";
+import DocConsultationDetails from "./pages/doctor/DocConsultationDetails";
+import DocDailyProgress from "./pages/doctor/DocDailyProgress";
 
 import NurseDashboard from "./pages/nurse/NurseDashboard";
 import PatientRecords from "./pages/nurse/PatientRecords";
+import PatientConsultations from "./pages/nurse/PatientConsultations"; // Add import for the new component
+import PatientConsultationDetails from "./pages/nurse/PatientConsultationDetails";
+import NurPatientProgress from "./pages/nurse/NurPatientProgress";
+import NurDetailedProgress from "./pages/nurse/NurDetailedProgress";
+import NurAddVitals from "./pages/nurse/NurAddVitals";
 
 import PharmacistDashboard from "./pages/pharmacist/PharmacistDashboard";
 
@@ -60,13 +82,14 @@ import AnalyticsDashboard from "./pages/admin/analytics/AnalyticsDashboard";
 import IllnessTrends from "./pages/admin/analytics/IllnessTrends";
 import MedicineTrends from "./pages/admin/analytics/MedicineTrends";
 import FinancialTrends from "./pages/admin/analytics/FinancialTrends";
-import BedOccupancyTrends from "./pages/admin/analytics/BedOccupancyTrends";
+import DoctorPerformanceMetrics from "./pages/admin/analytics/DoctorPerformanceMetrics";
 import DoctorWorkingTrends from "./pages/admin/analytics/DoctorWorkingTrends";
-import MedicineEffectivenessVsHumanTraits from "./pages/admin/analytics/MedicineEffectivenessVsHumanTraits";
+import TextualFeedbackAnalysis from "./pages/admin/analytics/FeedbackTextAnalysis";
 import Feedbacks from "./pages/admin/analytics/Feedbacks";
 
 import PublicData from "./pages/PublicData";
 import AddBill from "./pages/receptionist/AddBill";
+
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -90,8 +113,14 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/unauthorized" element={<Unauthorized />} />
           <Route path="/public-data" element={<PublicData />} />
+          <Route path="/features" element={<FeaturesPage />} />
+          <Route path="/community" element={<CommunityPage />} />
+          <Route path="/trends" element={<TrendsPage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/privacy" element={<PrivacyPolicyPage/>} />
+          <Route path= "/terms" element={<TermsPage/>} />
 
-         {/* Role-Based Common Pages */}
+         {/* Role-Based Common Pages */}                  
          <Route element={<ProtectedRoute allowedRoles={["doctor", "nurse", "receptionist", "admin", "patient", "pathologist"]} />}>
             <Route path=":role/profile" element={<Profile />} />
           </Route>
@@ -121,14 +150,23 @@ function App() {
 
           {/* Patient Routes */}
           <Route element={<ProtectedRoute allowedRoles={["patient"]} />}>
-            <Route path="/patient" element={<PatientDashboard />} />
+            <Route path="/patient/profile" element={<PatientDashboard />} />
             <Route path="/patient/feedback" element={<Feedback />} />
             <Route path="/patient/doctor-profile" element={<DoctorProfile />} />
             <Route path="/patient/bills" element={<Bills />} />
+            <Route path="/patient/bills/:billId" element={<Bills />} />
             <Route path="/patient/consultations" element={<Consultations />} />
             <Route path="/patient/daily-progress" element={<DailyProgress />} />
+            <Route path="/patient/support" element={<Support />} />
 
             <Route path="/patient/previous-consultations" element={<PreviousConsultations />} />
+            {/* <Route path="/patient/previous-consultations/:id" element={<PreviousConsultations />} /> */}
+            {/* <Route path="/previous-consultations" element={<PreviousConsultations />} /> */}
+            <Route path="/patient/previous-consultations/:id" element={<ConsultationDetails />} />
+            <Route path="/patient/previous-consultations/:id/reports" element={<ConsultationReports />} />
+            <Route path="/patient/previous-consultations/:id/prescriptions" element={<ConsultationPrescriptions />} />
+            <Route path="/patient/previous-consultations/:id/diagnosis" element={<ConsultationDiagnosis />} />
+            <Route path="/patient/previous-consultations/:id/bills" element={<ConsultantBills />} />
             <Route path="/patient/book-consultation" element={<BookConsultation />} />
             <Route path="/patient/booked-consultation" element={<BookedConsultation />} />
             <Route path="/patient/reschedule-consultation/:consultationId" element={<RescheduleConsultation />} />
@@ -139,11 +177,14 @@ function App() {
           <Route element={<ProtectedRoute allowedRoles={["doctor"]} />}>
             <Route path="/doctor" element={<DoctorDashboard />} />
             <Route path="/doctor/appointments" element={<Appointments />} />
-            
+            <Route path="/doctor/book-appointment" element={<DoctorAddAppointment />} /> 
+            <Route path="/patient-consultations/:patientId" element={<DocPatientConsultations />} />
+            <Route path="/patient-consultations/:patientId/consultation/:consultationId" element={<DocConsultationDetails />} />
+            <Route path="/patient-progress/:patientId" element={<DocDailyProgress />} />
           </Route>
           <Route element={<ProtectedRoute allowedRoles={["doctor","nurse"]} />}>
         
-            <Route path=":role/patient-consultations/:consultationId?" element={<PatientConsulatation />} />
+            {/* <Route path=":role/patient-consultations/:consultationId?" element={<PatientConsulatations />} /> */}
             {/* Patient progress and Patient consultation share same page ,, if consulatation id exists, go into further details about particular patient*/}
           </Route>
         
@@ -151,10 +192,17 @@ function App() {
           <Route element={<ProtectedRoute allowedRoles={["nurse"]} />}>
             <Route path="/nurse" element={<NurseDashboard />} />
             <Route path="/nurse/patient-records" element={<PatientRecords />} />
+            <Route path="/nurse/patient-records/:patientId/consultations" element={<PatientConsultations />} />
+                {/* Add this new route for consultation details */}
+                <Route path="/nurse/patient-consultations/:consultationId" element={<PatientConsultationDetails />} />
+                <Route path="/nurse/patient-progress/:patientId" element={<NurPatientProgress />} />
+                <Route path="/nurse/daily-progress/details/:entry" element={<NurDetailedProgress />} />
+                <Route path="/nurse/daily-progress/add-vitals" element={<NurAddVitals />} />
           </Route>
 
           <Route element={<ProtectedRoute allowedRoles={["pharmacist"]} />}>
             <Route path="/pharmacist" element={<PharmacistDashboard />} />
+            {/* <Route path="/pharmacist/profile" element={<PharmacistDashboard />} /> */}
           </Route>
 
           <Route element={<ProtectedRoute allowedRoles={["pathologist"]} />}>
@@ -188,9 +236,9 @@ function App() {
             <Route path="/admin/analytics/illness-trends" element={<IllnessTrends />} />
             <Route path="/admin/analytics/medicine-trends" element={<MedicineTrends />} />
             <Route path="/admin/analytics/financial-trends" element={<FinancialTrends />} />
-            <Route path="/admin/analytics/bed-occupancy-trends" element={<BedOccupancyTrends />} />
+            <Route path="/admin/analytics/doctor-performance-trends" element={<DoctorPerformanceMetrics />} />
             <Route path="/admin/analytics/doctor-working-trends" element={<DoctorWorkingTrends />} />
-            <Route path="/admin/analytics/medicine-effectiveness" element={<MedicineEffectivenessVsHumanTraits />} />
+            <Route path="/admin/analytics/text-feedback" element={<TextualFeedbackAnalysis />} />
             <Route path="/admin/analytics/feedbacks" element={<Feedbacks />} />
           </Route>
         </Routes>
